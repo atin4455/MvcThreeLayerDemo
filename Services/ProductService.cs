@@ -15,9 +15,9 @@ namespace MvcThreeLayerDemo.Services
 
         public List<ProductVm> GetProductVms()
         {
-            var dtos = _productRepository.GetAllProducts();
+            var dtos = _productRepository.GetAllProducts(); //1.從 Repository 取得 DTOs
 
-            return dtos.Select(dto => new ProductVm
+            return dtos.Select(dto => new ProductVm //2.將 DTOs 轉換成 ViewModels,並從Service層回傳至 Controller(Web層)
             {
                 DisplayName = $"{dto.Id}. {dto.Name}",
                 DisplayPrice = $"NT$ {dto.Price:N0}"
