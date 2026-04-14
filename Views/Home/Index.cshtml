@@ -1,8 +1,34 @@
-﻿@{
+﻿@model List<MvcThreeLayerDemo.Models.ViewModels.ProductVm>
+@{
     ViewData["Title"] = "Home Page";
 }
 
-<div class="text-center">
-    <h1 class="display-4">Welcome</h1>
-    <p>Learn about <a href="https://learn.microsoft.com/aspnet/core">building Web apps with ASP.NET Core</a>.</p>
+<div class="container mt-4">
+    <h1>三層式架構練習（MVC + VM + DTO）</h1>
+    <p>這個範例不使用 Web API，Repository 直接模擬「從 DB 取資料」。</p>
+
+    <ol>
+        <li>Controller 呼叫 Service</li>
+        <li>Service 呼叫 Repository</li>
+        <li>Repository 模擬從 DB 取到 DTO</li>
+        <li>Service 把 DTO 轉成 VM 給 View 顯示</li>
+    </ol>
+
+    <table class="table table-bordered">
+        <thead>
+            <tr>
+                <th>商品</th>
+                <th>價格</th>
+            </tr>
+        </thead>
+        <tbody>
+            @foreach (var item in Model)
+            {
+                <tr>
+                    <td>@item.DisplayName</td>
+                    <td>@item.DisplayPrice</td>
+                </tr>
+            }
+        </tbody>
+    </table>
 </div>
